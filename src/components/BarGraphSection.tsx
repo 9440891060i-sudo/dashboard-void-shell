@@ -192,7 +192,7 @@ const BarGraphSection = ({ isExpanded = false, isLayoutMode = false }: BarGraphS
         </div>
 
         {/* Bottom Metrics Section */}
-        <div className="grid grid-cols-2 gap-4 mt-2 pt-3 border-t border-[hsl(var(--dashboard-border))]">
+        <div className="grid grid-cols-4 gap-4 mt-2 pt-3 border-t border-[hsl(var(--dashboard-border))]">
           {/* Members */}
           <div className="flex items-center gap-3">
             <Users className="w-5 h-5 text-muted-foreground" />
@@ -232,6 +232,24 @@ const BarGraphSection = ({ isExpanded = false, isLayoutMode = false }: BarGraphS
               </div>
             </div>
           </div>
+
+          {/* Total Posts */}
+          <div className="flex items-center gap-3">
+            <div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-xl font-bold text-foreground">20</span>
+                <span className="text-xs font-medium text-muted-foreground">
+                  Total Posts
+                </span>
+              </div>
+              <div className="text-xs text-muted-foreground mt-1">
+                M : 8 and C : 12
+              </div>
+            </div>
+          </div>
+
+          {/* Empty space for alignment */}
+          <div></div>
         </div>
       </div>
     </div>

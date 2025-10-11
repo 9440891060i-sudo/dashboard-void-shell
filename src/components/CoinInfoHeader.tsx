@@ -26,6 +26,7 @@ const CoinInfoHeader = ({
 }: CoinInfoHeaderProps) => {
   const [copied, setCopied] = useState(false);
   const [age, setAge] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState<'ca' | 'community'>('ca');
 
   const calculateAge = () => {
     const now = new Date();
@@ -115,14 +116,24 @@ const CoinInfoHeader = ({
             <Button
               variant="outline"
               size="sm"
-              className="text-xs font-medium"
+              className={`text-xs font-medium ${
+                selectedFilter === 'ca' 
+                  ? 'border-white text-white' 
+                  : 'border-[hsl(var(--border))] text-muted-foreground'
+              }`}
+              onClick={() => setSelectedFilter('ca')}
             >
               Posts with CA
             </Button>
             <Button
               variant="outline"
               size="sm"
-              className="text-xs font-medium"
+              className={`text-xs font-medium ${
+                selectedFilter === 'community' 
+                  ? 'border-white text-white' 
+                  : 'border-[hsl(var(--border))] text-muted-foreground'
+              }`}
+              onClick={() => setSelectedFilter('community')}
             >
               Posts inside community
             </Button>

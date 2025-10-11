@@ -242,8 +242,9 @@ const BarGraphSection = ({ isExpanded = false, isLayoutMode = false }: BarGraphS
                   Total Posts
                 </span>
               </div>
-              <div className="text-xs text-muted-foreground mt-1">
-                M : 8 and C : 12
+              <div className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                <span>M : <span className="text-blue-400 font-semibold" style={{ textShadow: '0 0 8px rgba(96, 165, 250, 0.6)' }}>8</span></span>
+                <span>C : <span className="text-green-400 font-semibold" style={{ textShadow: '0 0 8px rgba(74, 222, 128, 0.6)' }}>12</span></span>
               </div>
             </div>
           </div>

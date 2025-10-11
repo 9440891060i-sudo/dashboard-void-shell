@@ -110,6 +110,24 @@ const CoinInfoHeader = ({
 
         {/* Right Block - Meta Info */}
         <div className="flex items-center gap-4 sm:gap-6">
+          {/* Filter Buttons */}
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-xs font-medium"
+            >
+              Posts with CA
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-xs font-medium"
+            >
+              Posts inside community
+            </Button>
+          </div>
+
           {/* Age */}
           <div className="flex items-center gap-2">
             <Clock className="h-4 w-4 text-muted-foreground" />

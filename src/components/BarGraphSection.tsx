@@ -167,7 +167,7 @@ const BarGraphSection = ({ isExpanded = false, isLayoutMode = false }: BarGraphS
         {/* Charts Container */}
         <div className={`flex-1 min-h-0 flex gap-4 ${isExpanded ? '' : 'flex-col'}`}>
           {/* Main Bar Chart */}
-          <div className={`${isExpanded ? 'flex-[0.7]' : 'flex-1'} -mx-2`}>
+          <div className={`${isExpanded ? 'w-[70%]' : 'flex-1'} min-h-0`}>
             <ResponsiveContainer width="100%" height="100%">
               <BarChart 
                 data={chartData}
@@ -220,12 +220,15 @@ const BarGraphSection = ({ isExpanded = false, isLayoutMode = false }: BarGraphS
 
           {/* Total Posts Line Chart - Only shown when expanded */}
           {isExpanded && (
-            <div className="flex-[0.3] border-l border-[hsl(var(--dashboard-border))] pl-4 flex flex-col">
-              <div className="mb-3">
+            <div className="w-[30%] min-h-0 border-l border-[hsl(var(--dashboard-border))] pl-4 flex flex-col shrink-0">
+              <div className="mb-3 flex-shrink-0">
                 <h4 className="text-foreground text-sm font-semibold mb-2">Total Posts</h4>
                 <div className="flex items-center gap-2">
                   <button
-                    onClick={() => setShowMLine(!showMLine)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowMLine(!showMLine);
+                    }}
                     className={`px-2.5 py-1 rounded text-xs font-medium transition-all ${
                       showMLine 
                         ? 'bg-blue-500/20 text-blue-400 border border-blue-500' 
@@ -235,7 +238,10 @@ const BarGraphSection = ({ isExpanded = false, isLayoutMode = false }: BarGraphS
                     M
                   </button>
                   <button
-                    onClick={() => setShowCLine(!showCLine)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowCLine(!showCLine);
+                    }}
                     className={`px-2.5 py-1 rounded text-xs font-medium transition-all ${
                       showCLine 
                         ? 'bg-green-500/20 text-green-400 border border-green-500' 
@@ -247,24 +253,25 @@ const BarGraphSection = ({ isExpanded = false, isLayoutMode = false }: BarGraphS
                 </div>
               </div>
               
-              <div className="flex-1 -mx-2">
+              <div className="flex-1 min-h-0 overflow-hidden">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart 
                     data={totalPostsData}
-                    margin={{ top: 10, right: 5, left: 5, bottom: 5 }}
+                    margin={{ top: 10, right: 10, left: 0, bottom: 5 }}
                   >
                     <XAxis 
                       dataKey="time"
                       stroke="#333333"
-                      tick={{ fill: '#666666', fontSize: 10 }}
+                      tick={{ fill: '#666666', fontSize: 9 }}
                       tickLine={{ stroke: '#333333' }}
                       axisLine={{ stroke: '#333333' }}
                     />
                     <YAxis 
                       stroke="#333333"
-                      tick={{ fill: '#666666', fontSize: 10 }}
+                      tick={{ fill: '#666666', fontSize: 9 }}
                       tickLine={{ stroke: '#333333' }}
                       axisLine={{ stroke: '#333333' }}
+                      width={30}
                     />
                     <Tooltip
                       contentStyle={{
@@ -281,8 +288,9 @@ const BarGraphSection = ({ isExpanded = false, isLayoutMode = false }: BarGraphS
                       dataKey="total"
                       stroke="#B0B0B0"
                       strokeWidth={2}
-                      dot={{ fill: '#B0B0B0', r: 3 }}
-                      animationDuration={300}
+                      dot={{ fill: '#B0B0B0', r: 2 }}
+                      animationDuration={0}
+                      isAnimationActive={false}
                     />
                     
                     {/* M Line - conditionally visible */}
@@ -292,8 +300,9 @@ const BarGraphSection = ({ isExpanded = false, isLayoutMode = false }: BarGraphS
                         dataKey="m"
                         stroke="#60A5FA"
                         strokeWidth={2}
-                        dot={{ fill: '#60A5FA', r: 3 }}
-                        animationDuration={300}
+                        dot={{ fill: '#60A5FA', r: 2 }}
+                        animationDuration={0}
+                        isAnimationActive={false}
                       />
                     )}
                     
@@ -304,8 +313,9 @@ const BarGraphSection = ({ isExpanded = false, isLayoutMode = false }: BarGraphS
                         dataKey="c"
                         stroke="#4ADE80"
                         strokeWidth={2}
-                        dot={{ fill: '#4ADE80', r: 3 }}
-                        animationDuration={300}
+                        dot={{ fill: '#4ADE80', r: 2 }}
+                        animationDuration={0}
+                        isAnimationActive={false}
                       />
                     )}
                   </LineChart>
